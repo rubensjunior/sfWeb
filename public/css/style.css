@@ -1,0 +1,25 @@
+h1, h2, h3, h4, h5, h6{
+    font-weight: 600;
+}
+input.form-control{
+    border: none;
+    background-color: #f9f9f9;
+    height: 50px;
+    font-size: 15px;
+}
+textarea.form-control{
+    border: none;
+    background-color: #f9f9f9;
+    height: 96px;
+    font-size: 15px;
+}
+.btn{
+    height: 52px;
+    font-weight: 500;
+}
+.text-body-secondary{
+    display: block;
+}
+.style1{
+    background-attachment: scroll;
+}

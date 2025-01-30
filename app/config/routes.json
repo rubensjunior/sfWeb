@@ -10,6 +10,11 @@
       "path": "/m/b/backoffice",
       "page": "master/backoffice",
       "layout": "main"
+    },
+    {
+      "path": "/cadastro-novo-cliente",
+      "page": "cadastro-novo-cliente",
+      "layout": "main"
     }
   ]
 }

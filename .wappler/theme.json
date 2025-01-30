@@ -2,7 +2,10 @@
   "bootstrap5": {
     "basic": {
       "dark": "#0F1014",
-      "body-color": "#0F1014"
+      "body-color": "#0F1014",
+      "headings-font-family": "Inter:700",
+      "font-family-base": "Inter:400",
+      "font-family-sans-serif": "Inter:600"
     },
     "advanced": {}
   }
