@@ -23,3 +23,8 @@ textarea.form-control{
 .style1{
     background-attachment: scroll;
 }
+.bg-sidebar{
+    background-image: url(../assets/images/auth-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

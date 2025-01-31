@@ -2,7 +2,7 @@
 <dmx-value id="visibilidadeForm" dmx-bind:value="0"></dmx-value>
 <div class="container-fluid vh-100">
     <div class="row h-100">
-        <div class="col-md-4 bg-primary"></div>
+        <div class="col-md-4 bg-sidebar"></div>
         <div class="col-md-8 align-self-center p-5 style1">
             <div class="row align-items-center justify-content-center">
                 <div class="col-8">
@@ -50,10 +50,10 @@
 
                                 <div class="d-flex flex-row align-items-center justify-content-between">
                                     <div class="form-group mb-3 me-2 w-100"> <label for="celularPolo" class="form-label">Celular</label>
-                                        <input type="text" class="form-control" id="celularPolo" name="celularPolo" aria-describedby="input1_help" placeholder="(00) 00000-0000" required="" data-msg-required="Este é um campo obrigatório!">
+                                        <input type="text" class="form-control" id="celularPolo" name="celularPolo" aria-describedby="input1_help" placeholder="(00) 0 0000-0000" required="" data-msg-required="Este é um campo obrigatório!">
                                     </div>
                                     <div class="form-group mb-3 ms-2 w-100"> <label for="telefonePolo" class="form-label">Telefone</label>
-                                        <input type="text" class="form-control" id="telefonePolo" name="telefonePolo" aria-describedby="input1_help" placeholder="(00) 0000-0000" required="" data-msg-required="Este é um campo obrigatório!">
+                                        <input type="text" class="form-control" id="telefonePolo" name="telefonePolo" aria-describedby="input1_help" placeholder="(00) 0000-0000">
                                     </div>
                                 </div>
                                 <div class="form-group mb-3 text-end"> <button id="btn2" class="btn btn-light me-3" dmx-on:click="visibilidadeForm.setValue(0)">Voltar</button>
@@ -93,9 +93,6 @@
                                 <p>Se precisar de ajuda, nosso suporte está disponível para garantir que você tenha a melhor experiência.</p>
                                 <p>📩 Dúvidas? Entre em contato com nosso suporte: suporte@spacefeed.app</p>
                                 </p>
-
-
-
                             </div>
                         </div>
 
@@ -105,4 +102,11 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $('#cepPolo').mask('00000-000');
+    $('#cnpjEmpresa').mask('00.000.000/0000-00', {reverse: true});
+    $('#celularPolo').mask('(00) 0 0000-0000');
+    $('#telefonePolo').mask('(00) 0000-0000');
+</script>
 <meta name="ac:route" content="/cadastro-novo-cliente">
