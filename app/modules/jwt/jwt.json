@@ -1,0 +1,7 @@
+{
+  "name": "jwt",
+  "module": "jwt",
+  "action": "sign",
+  "options": {},
+  "outputType": "text"
+}
