@@ -1,0 +1,773 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/cadastro-novo-cliente.ejs",
+      "linkedForm": "cadastroUsuario"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "nomeUsuario",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este é um campo obrigatório!"
+            }
+          }
+        },
+        "name": "nomeUsuario"
+      },
+      {
+        "type": "text",
+        "fieldName": "emailUsuario",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este é um campo obrigatório!"
+            },
+            "core:email": {
+              "param": "",
+              "message": "Insira um e-mail válido!"
+            }
+          }
+        },
+        "name": "emailUsuario"
+      },
+      {
+        "type": "text",
+        "fieldName": "senhaUsuario",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este é um campo obrigatório!"
+            }
+          }
+        },
+        "name": "senhaUsuario"
+      },
+      {
+        "type": "text",
+        "fieldName": "confirmarSenhaUsuario",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este é um campo obrigatório!"
+            },
+            "core:equalTo": {
+              "param": "senhaUsuario",
+              "message": "As senhas não conferem!"
+            }
+          }
+        },
+        "name": "confirmarSenhaUsuario"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "apiSignup",
+        "module": "api",
+        "action": "send",
+        "options": {
+          "method": "POST",
+          "url": "https://vmmzbibdzvzsjcuedjsp.supabase.co/auth/v1/signup",
+          "headers": {
+            "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZtbXpiaWJkenZ6c2pjdWVkanNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyNDM5MzMsImV4cCI6MjA1MzgxOTkzM30.pgDn94jl4SqCpJTTiZE_0N1pytZFwoepFkRqogSJVso",
+            "Content-Type": "application/json"
+          },
+          "data": {
+            "email": "{{$_POST.emailUsuario}}",
+            "password": "{{$_POST.confirmarSenhaUsuario}}"
+          },
+          "dataType": "json",
+          "schema": [
+            {
+              "type": "object",
+              "name": "data",
+              "sub": [
+                {
+                  "type": "text",
+                  "name": "access_token"
+                },
+                {
+                  "type": "text",
+                  "name": "token_type"
+                },
+                {
+                  "type": "number",
+                  "name": "expires_in"
+                },
+                {
+                  "type": "number",
+                  "name": "expires_at"
+                },
+                {
+                  "type": "text",
+                  "name": "refresh_token"
+                },
+                {
+                  "type": "object",
+                  "name": "user",
+                  "sub": [
+                    {
+                      "type": "text",
+                      "name": "id"
+                    },
+                    {
+                      "type": "text",
+                      "name": "aud"
+                    },
+                    {
+                      "type": "text",
+                      "name": "role"
+                    },
+                    {
+                      "type": "text",
+                      "name": "email"
+                    },
+                    {
+                      "type": "text",
+                      "name": "email_confirmed_at"
+                    },
+                    {
+                      "type": "text",
+                      "name": "phone"
+                    },
+                    {
+                      "type": "text",
+                      "name": "last_sign_in_at"
+                    },
+                    {
+                      "type": "object",
+                      "name": "app_metadata",
+                      "sub": [
+                        {
+                          "type": "text",
+                          "name": "provider"
+                        },
+                        {
+                          "type": "array",
+                          "name": "providers",
+                          "sub": [
+                            {
+                              "type": "text",
+                              "name": "$value"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "name": "user_metadata",
+                      "sub": [
+                        {
+                          "type": "text",
+                          "name": "email"
+                        },
+                        {
+                          "type": "boolean",
+                          "name": "email_verified"
+                        },
+                        {
+                          "type": "boolean",
+                          "name": "phone_verified"
+                        },
+                        {
+                          "type": "text",
+                          "name": "sub"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "array",
+                      "name": "identities",
+                      "sub": [
+                        {
+                          "type": "text",
+                          "name": "identity_id"
+                        },
+                        {
+                          "type": "text",
+                          "name": "id"
+                        },
+                        {
+                          "type": "text",
+                          "name": "user_id"
+                        },
+                        {
+                          "type": "object",
+                          "name": "identity_data",
+                          "sub": [
+                            {
+                              "type": "text",
+                              "name": "email"
+                            },
+                            {
+                              "type": "boolean",
+                              "name": "email_verified"
+                            },
+                            {
+                              "type": "boolean",
+                              "name": "phone_verified"
+                            },
+                            {
+                              "type": "text",
+                              "name": "sub"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "name": "provider"
+                        },
+                        {
+                          "type": "text",
+                          "name": "last_sign_in_at"
+                        },
+                        {
+                          "type": "text",
+                          "name": "created_at"
+                        },
+                        {
+                          "type": "text",
+                          "name": "updated_at"
+                        },
+                        {
+                          "type": "text",
+                          "name": "email"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "name": "created_at"
+                    },
+                    {
+                      "type": "text",
+                      "name": "updated_at"
+                    },
+                    {
+                      "type": "boolean",
+                      "name": "is_anonymous"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "name": "headers",
+              "sub": [
+                {
+                  "type": "text",
+                  "name": "alt-svc"
+                },
+                {
+                  "type": "text",
+                  "name": "cf-cache-status"
+                },
+                {
+                  "type": "text",
+                  "name": "cf-ray"
+                },
+                {
+                  "type": "text",
+                  "name": "content-encoding"
+                },
+                {
+                  "type": "text",
+                  "name": "content-type"
+                },
+                {
+                  "type": "text",
+                  "name": "date"
+                },
+                {
+                  "type": "text",
+                  "name": "priority"
+                },
+                {
+                  "type": "text",
+                  "name": "sb-gateway-version"
+                },
+                {
+                  "type": "text",
+                  "name": "sb-project-ref"
+                },
+                {
+                  "type": "text",
+                  "name": "server"
+                },
+                {
+                  "type": "text",
+                  "name": "server-timing"
+                },
+                {
+                  "type": "text",
+                  "name": "strict-transport-security"
+                },
+                {
+                  "type": "text",
+                  "name": "vary"
+                },
+                {
+                  "type": "text",
+                  "name": "x-content-type-options"
+                },
+                {
+                  "type": "text",
+                  "name": "x-envoy-attempt-count"
+                },
+                {
+                  "type": "text",
+                  "name": "x-envoy-upstream-service-time"
+                }
+              ]
+            }
+          ]
+        },
+        "output": true,
+        "collapsed": true,
+        "meta": [
+          {
+            "type": "object",
+            "name": "data",
+            "sub": [
+              {
+                "type": "text",
+                "name": "access_token"
+              },
+              {
+                "type": "text",
+                "name": "token_type"
+              },
+              {
+                "type": "number",
+                "name": "expires_in"
+              },
+              {
+                "type": "number",
+                "name": "expires_at"
+              },
+              {
+                "type": "text",
+                "name": "refresh_token"
+              },
+              {
+                "type": "object",
+                "name": "user",
+                "sub": [
+                  {
+                    "type": "text",
+                    "name": "id"
+                  },
+                  {
+                    "type": "text",
+                    "name": "aud"
+                  },
+                  {
+                    "type": "text",
+                    "name": "role"
+                  },
+                  {
+                    "type": "text",
+                    "name": "email"
+                  },
+                  {
+                    "type": "text",
+                    "name": "email_confirmed_at"
+                  },
+                  {
+                    "type": "text",
+                    "name": "phone"
+                  },
+                  {
+                    "type": "text",
+                    "name": "last_sign_in_at"
+                  },
+                  {
+                    "type": "object",
+                    "name": "app_metadata",
+                    "sub": [
+                      {
+                        "type": "text",
+                        "name": "provider"
+                      },
+                      {
+                        "type": "array",
+                        "name": "providers",
+                        "sub": [
+                          {
+                            "type": "text",
+                            "name": "$value"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "name": "user_metadata",
+                    "sub": [
+                      {
+                        "type": "text",
+                        "name": "email"
+                      },
+                      {
+                        "type": "boolean",
+                        "name": "email_verified"
+                      },
+                      {
+                        "type": "boolean",
+                        "name": "phone_verified"
+                      },
+                      {
+                        "type": "text",
+                        "name": "sub"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "name": "identities",
+                    "sub": [
+                      {
+                        "type": "text",
+                        "name": "identity_id"
+                      },
+                      {
+                        "type": "text",
+                        "name": "id"
+                      },
+                      {
+                        "type": "text",
+                        "name": "user_id"
+                      },
+                      {
+                        "type": "object",
+                        "name": "identity_data",
+                        "sub": [
+                          {
+                            "type": "text",
+                            "name": "email"
+                          },
+                          {
+                            "type": "boolean",
+                            "name": "email_verified"
+                          },
+                          {
+                            "type": "boolean",
+                            "name": "phone_verified"
+                          },
+                          {
+                            "type": "text",
+                            "name": "sub"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "name": "provider"
+                      },
+                      {
+                        "type": "text",
+                        "name": "last_sign_in_at"
+                      },
+                      {
+                        "type": "text",
+                        "name": "created_at"
+                      },
+                      {
+                        "type": "text",
+                        "name": "updated_at"
+                      },
+                      {
+                        "type": "text",
+                        "name": "email"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "name": "created_at"
+                  },
+                  {
+                    "type": "text",
+                    "name": "updated_at"
+                  },
+                  {
+                    "type": "boolean",
+                    "name": "is_anonymous"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "name": "headers",
+            "sub": [
+              {
+                "type": "text",
+                "name": "alt-svc"
+              },
+              {
+                "type": "text",
+                "name": "cf-cache-status"
+              },
+              {
+                "type": "text",
+                "name": "cf-ray"
+              },
+              {
+                "type": "text",
+                "name": "content-encoding"
+              },
+              {
+                "type": "text",
+                "name": "content-type"
+              },
+              {
+                "type": "text",
+                "name": "date"
+              },
+              {
+                "type": "text",
+                "name": "priority"
+              },
+              {
+                "type": "text",
+                "name": "sb-gateway-version"
+              },
+              {
+                "type": "text",
+                "name": "sb-project-ref"
+              },
+              {
+                "type": "text",
+                "name": "server"
+              },
+              {
+                "type": "text",
+                "name": "server-timing"
+              },
+              {
+                "type": "text",
+                "name": "strict-transport-security"
+              },
+              {
+                "type": "text",
+                "name": "vary"
+              },
+              {
+                "type": "text",
+                "name": "x-content-type-options"
+              },
+              {
+                "type": "text",
+                "name": "x-envoy-attempt-count"
+              },
+              {
+                "type": "text",
+                "name": "x-envoy-upstream-service-time"
+              }
+            ]
+          }
+        ],
+        "outputType": "object"
+      },
+      {
+        "name": "novoColaborador",
+        "module": "api",
+        "action": "send",
+        "options": {
+          "url": "https://vmmzbibdzvzsjcuedjsp.supabase.co/rest/v1/usuarios",
+          "method": "POST",
+          "headers": {
+            "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZtbXpiaWJkenZ6c2pjdWVkanNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyNDM5MzMsImV4cCI6MjA1MzgxOTkzM30.pgDn94jl4SqCpJTTiZE_0N1pytZFwoepFkRqogSJVso",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZtbXpiaWJkenZ6c2pjdWVkanNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyNDM5MzMsImV4cCI6MjA1MzgxOTkzM30.pgDn94jl4SqCpJTTiZE_0N1pytZFwoepFkRqogSJVso",
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          "data": {
+            "id_usuario": "{{apiSignup.data.user.id}}",
+            "nome": "{{$_POST.nomeUsuario}}",
+            "token": "{{apiSignup.data.access_token}}",
+            "refresh_token": "{{apiSignup.data.refresh_token}}",
+            "email": "{{$_POST.emailUsuario}}"
+          },
+          "schema": [
+            {
+              "type": "text",
+              "name": "data"
+            },
+            {
+              "type": "object",
+              "name": "headers",
+              "sub": [
+                {
+                  "type": "text",
+                  "name": "alt-svc"
+                },
+                {
+                  "type": "text",
+                  "name": "cf-cache-status"
+                },
+                {
+                  "type": "text",
+                  "name": "cf-ray"
+                },
+                {
+                  "type": "text",
+                  "name": "content-encoding"
+                },
+                {
+                  "type": "text",
+                  "name": "content-range"
+                },
+                {
+                  "type": "text",
+                  "name": "date"
+                },
+                {
+                  "type": "text",
+                  "name": "preference-applied"
+                },
+                {
+                  "type": "text",
+                  "name": "priority"
+                },
+                {
+                  "type": "text",
+                  "name": "sb-gateway-version"
+                },
+                {
+                  "type": "text",
+                  "name": "sb-project-ref"
+                },
+                {
+                  "type": "text",
+                  "name": "server"
+                },
+                {
+                  "type": "text",
+                  "name": "server-timing"
+                },
+                {
+                  "type": "text",
+                  "name": "strict-transport-security"
+                },
+                {
+                  "type": "text",
+                  "name": "vary"
+                },
+                {
+                  "type": "text",
+                  "name": "x-content-type-options"
+                },
+                {
+                  "type": "text",
+                  "name": "x-envoy-attempt-count"
+                },
+                {
+                  "type": "text",
+                  "name": "x-envoy-upstream-service-time"
+                }
+              ]
+            }
+          ],
+          "dataType": "json"
+        },
+        "output": true,
+        "collapsed": true,
+        "meta": [
+          {
+            "type": "text",
+            "name": "data"
+          },
+          {
+            "type": "object",
+            "name": "headers",
+            "sub": [
+              {
+                "type": "text",
+                "name": "alt-svc"
+              },
+              {
+                "type": "text",
+                "name": "cf-cache-status"
+              },
+              {
+                "type": "text",
+                "name": "cf-ray"
+              },
+              {
+                "type": "text",
+                "name": "content-encoding"
+              },
+              {
+                "type": "text",
+                "name": "content-range"
+              },
+              {
+                "type": "text",
+                "name": "date"
+              },
+              {
+                "type": "text",
+                "name": "preference-applied"
+              },
+              {
+                "type": "text",
+                "name": "priority"
+              },
+              {
+                "type": "text",
+                "name": "sb-gateway-version"
+              },
+              {
+                "type": "text",
+                "name": "sb-project-ref"
+              },
+              {
+                "type": "text",
+                "name": "server"
+              },
+              {
+                "type": "text",
+                "name": "server-timing"
+              },
+              {
+                "type": "text",
+                "name": "strict-transport-security"
+              },
+              {
+                "type": "text",
+                "name": "vary"
+              },
+              {
+                "type": "text",
+                "name": "x-content-type-options"
+              },
+              {
+                "type": "text",
+                "name": "x-envoy-attempt-count"
+              },
+              {
+                "type": "text",
+                "name": "x-envoy-upstream-service-time"
+              }
+            ]
+          }
+        ],
+        "outputType": "object"
+      }
+    ]
+  }
+}

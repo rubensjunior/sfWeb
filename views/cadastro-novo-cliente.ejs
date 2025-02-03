@@ -3,10 +3,10 @@
 <div class="container-fluid vh-100">
     <div class="row h-100">
         <div class="col-md-4 bg-sidebar"></div>
-        <div class="col-md-8 align-self-center p-5 style1">
+        <div class="col-md-8 align-self-center p-3">
             <div class="row align-items-center justify-content-center">
-                <div class="col-8">
-                    <form id="cadastroUsuario">
+                <div class="col-9">
+                    <form method="post" dmx-on:error="notifies1.danger(lastError.status+lastError.message+lastError.response);cadastroUsuario.reset()" dmx-on:success="cadastroUsuario.reset();visibilidadeForm.setValue(1)" id="cadastroUsuario" is="dmx-serverconnect-form" action="/api/usuario/signup">
                         <div class="row" dmx-show="visibilidadeForm.value==0">
                             <div class="col">
                                 <h5 class="mb-3">
@@ -18,71 +18,81 @@
                                 <div class="form-group mb-3"> <label for="emailUsuario" class="form-label">E-mail</label>
                                     <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" aria-describedby="input1_help" placeholder="E-mail para login e informações" required="" data-msg-required="Este é um campo obrigatório!" data-rule-email="" data-msg-email="Insira um e-mail válido!">
                                 </div>
-                                <div class="form-group mb-3"> <label for="senhaUsuario" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" aria-describedby="input1_help" placeholder="Insira sua senha" required="" data-msg-required="Este é um campo obrigatório!">
-                                </div>
-                                <div class="form-group mb-3"> <label for="confirmarSenhaUsuario" class="form-label">Confirmar senha</label>
-                                    <input type="password" class="form-control" id="confirmarSenhaUsuario" name="confirmarSenhaUsuario" aria-describedby="input1_help" placeholder="Insira novamente sua senha" required="" data-msg-required="Este é um campo obrigatório!" data-rule-equalto="senhaUsuario" data-msg-equalto="As senhas não conferem!">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="senhaUsuario" class="form-label">Senha</label>
+                                            <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" aria-describedby="input1_help" placeholder="Insira sua senha" required="" data-msg-required="Este é um campo obrigatório!">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="confirmarSenhaUsuario" class="form-label">Confirmar senha</label>
+                                            <input type="password" class="form-control" id="confirmarSenhaUsuario" name="confirmarSenhaUsuario" aria-describedby="input1_help" placeholder="Insira novamente sua senha" required="" data-msg-required="Este é um campo obrigatório!" data-rule-equalto="senhaUsuario" data-msg-equalto="As senhas não conferem!">
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="form-group mb-3 text-end"> <button id="btn1" class="btn btn-primary" dmx-on:click="visibilidadeForm.setValue(1)">Prosseguir</button>
+
+
+                                <div class="form-group mb-3 text-end"> <button id="btn1" class="btn btn-primary" type="submit">Prosseguir</button>
                                 </div>
 
                             </div>
                         </div>
-
                         <div class="row" dmx-show="visibilidadeForm.value==1">
                             <div class="col">
                                 <h5 class="mb-3">Dados da empresa</h5>
-                                <div class="form-group mb-3"> <label for="razaoSocial" class="form-label">Razão social</label>
-                                    <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" aria-describedby="input1_help" placeholder="Insira a razão social" required="" data-msg-required="Este é um campo obrigatório!">
-                                </div>
-                                <div class="form-group mb-3"> <label for="nomeFantasia" class="form-label">Nome fantasia</label>
-                                    <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" aria-describedby="input1_help" placeholder="Insira o nome fantasia" required="" data-msg-required="Este é um campo obrigatório!">
-                                </div>
-                                <div class="form-group mb-3"> <label for="nomePolo" class="form-label">Nome do polo</label>
-                                    <input type="text" class="form-control" id="nomePolo" name="nomePolo" aria-describedby="input1_help" placeholder="Insira o nome do seu polo" required="" data-msg-required="Este é um campo obrigatório!">
-                                </div>
-                                <div class="form-group mb-3" id="cnpjPolo"> <label for="cnpjEmpresa" class="form-label">CNPJ</label>
-                                    <input type="text" class="form-control" id="cnpjEmpresa" name="cnpjEmpresa" aria-describedby="input1_help" placeholder="Insira o CNPJ" required="" data-msg-required="Este é um campo obrigatório!">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="nomeUsuario1" class="form-label">Razão social</label>
+                                            <input type="text" class="form-control" id="nomeUsuario1" name="nomeUsuario" aria-describedby="input1_help" placeholder="Nome completo" required="" data-msg-required="Este é um campo obrigatório!">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="emailUsuario1" class="form-label">Nome fantasia</label>
+                                            <input type="email" class="form-control" id="emailUsuario1" name="emailUsuario" aria-describedby="input1_help" placeholder="E-mail para login e informações" required="" data-msg-required="Este é um campo obrigatório!" data-rule-email="" data-msg-email="Insira um e-mail válido!">
+                                        </div>
+                                    </div>
                                 </div>
 
 
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="form-group mb-3 me-2 w-100"> <label for="celularPolo" class="form-label">Celular</label>
-                                        <input type="text" class="form-control" id="celularPolo" name="celularPolo" aria-describedby="input1_help" placeholder="(00) 0 0000-0000" required="" data-msg-required="Este é um campo obrigatório!">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="confirmarSenhaUsuario1" class="form-label">Nome do polo</label>
+                                            <input class="form-control" id="confirmarSenhaUsuario1" name="confirmarSenhaUsuario" aria-describedby="input1_help" placeholder="Insira novamente sua senha" required="" data-msg-required="Este é um campo obrigatório!" data-rule-equalto="senhaUsuario" data-msg-equalto="As senhas não conferem!">
+                                        </div>
                                     </div>
-                                    <div class="form-group mb-3 ms-2 w-100"> <label for="telefonePolo" class="form-label">Telefone</label>
-                                        <input type="text" class="form-control" id="telefonePolo" name="telefonePolo" aria-describedby="input1_help" placeholder="(00) 0000-0000">
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="senhaUsuario1" class="form-label">CNPJ</label>
+                                            <input class="form-control" id="senhaUsuario1" name="senhaUsuario" aria-describedby="input1_help" placeholder="Insira sua senha" required="" data-msg-required="Este é um campo obrigatório!">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="confirmarSenhaUsuario2" class="form-label">Endereço com número</label>
+                                            <input class="form-control" id="confirmarSenhaUsuario2" name="confirmarSenhaUsuario" aria-describedby="input1_help" placeholder="Insira novamente sua senha" required="" data-msg-required="Este é um campo obrigatório!" data-rule-equalto="senhaUsuario" data-msg-equalto="As senhas não conferem!">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group mb-3"> <label for="confirmarSenhaUsuario3" class="form-label">CEP</label>
+                                            <input class="form-control" id="confirmarSenhaUsuario3" name="confirmarSenhaUsuario" aria-describedby="input1_help" placeholder="Insira novamente sua senha" required="" data-msg-required="Este é um campo obrigatório!" data-rule-equalto="senhaUsuario" data-msg-equalto="As senhas não conferem!">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group mb-3 text-end"> <button id="btn2" class="btn btn-light me-3" dmx-on:click="visibilidadeForm.setValue(0)">Voltar</button>
-                                    <button id="btn3" class="btn btn-primary" dmx-on:click="visibilidadeForm.setValue(2)">Prosseguir</button>
+
+
+
+                                <div class="form-group mb-3 text-end"> <button id="btn2" class="btn btn-primary" type="submit">Prosseguir</button>
                                 </div>
 
                             </div>
                         </div>
+
                         <div class="row" dmx-show="visibilidadeForm.value==2">
-                            <div class="col">
-                                <h5 class="mb-3">Endereço</h5>
-
-                                <div class="form-group mb-3"> <label for="enderecoPolo" class="form-label">Endereço</label>
-                                    <input class="form-control" id="enderecoPolo" name="enderecoPolo" aria-describedby="input1_help" placeholder="Endereco completo com número" required="" data-msg-required="Este é um campo obrigatório!">
-                                </div>
-                                <div class="form-group mb-3"> <label for="enderecoPolo" class="form-label">CEP</label>
-                                    <input type="text" class="form-control" id="cepPolo" name="cepPolo" aria-describedby="input1_help" placeholder="Insira o CEP" required="" data-msg-required="Este é um campo obrigatório!">
-                                </div>
-                                <div class="form-group mb-3"> <label for="enderecoPolo" class="form-label">Observação<br></label>
-                                    <textarea id="obsPolo" class="form-control" name="obsPolo"></textarea>
-                                </div>
-                                <div class="form-group mb-3 text-end"> <button id="btn4" class="btn btn-light me-3" dmx-on:click="visibilidadeForm.setValue(1)">Voltar</button>
-                                    <button id="btn4" class="btn btn-primary" dmx-on:click="visibilidadeForm.setValue(3)">Prosseguir</button>
-                                </div>
-
-
-                            </div>
-                        </div>
-                        <div class="row" dmx-show="visibilidadeForm.value==3">
                             <div class="col">
                                 <h3 class="mb-3">Sua conta foi criada!</h3>
                                 <p>Agora você tem acesso a todas as ferramentas necessárias para organizar e otimizar suas operações.</p>

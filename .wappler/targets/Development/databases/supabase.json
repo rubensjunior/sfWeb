@@ -27,6 +27,88 @@
         "db": {
           "schema": "public"
         },
+        "columns": {
+          "id_organizacao": {
+            "db": {
+              "type": "uuid",
+              "default": "uuid_generate_v4()",
+              "primary": true,
+              "unique": true,
+              "nullable": false
+            }
+          },
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "tipo": {
+            "db": {
+              "type": "string",
+              "maxLength": 50,
+              "primary": false,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "cnpj": {
+            "db": {
+              "type": "string",
+              "maxLength": 18,
+              "primary": false,
+              "unique": true,
+              "nullable": true
+            }
+          },
+          "endereco": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "telefone": {
+            "db": {
+              "type": "string",
+              "maxLength": 20,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": true,
+              "nullable": false
+            }
+          },
+          "criado_em": {
+            "db": {
+              "type": "timestamp",
+              "default": "now()",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "atualizado_em": {
+            "db": {
+              "type": "timestamp",
+              "default": "now()",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
         "refs": {
           "usuarios_organizacoes": "id_organizacao"
         }
@@ -35,6 +117,70 @@
         "db": {
           "schema": "public"
         },
+        "columns": {
+          "id_usuario": {
+            "db": {
+              "type": "uuid",
+              "default": "uuid_generate_v4()",
+              "primary": true,
+              "unique": true,
+              "nullable": false
+            }
+          },
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": true,
+              "nullable": false
+            }
+          },
+          "senha_hash": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "telefone": {
+            "db": {
+              "type": "string",
+              "maxLength": 20,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "criado_em": {
+            "db": {
+              "type": "timestamp",
+              "default": "now()",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "atualizado_em": {
+            "db": {
+              "type": "timestamp",
+              "default": "now()",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
         "sub": {
           "usuarios_organizacoes": "id_usuario"
         }
@@ -42,6 +188,43 @@
       "usuarios_organizacoes": {
         "db": {
           "schema": "public"
+        },
+        "columns": {
+          "id_usuario": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": false,
+              "references": "id_usuario",
+              "inTable": "usuarios",
+              "referenceType": "uuid",
+              "onUpdate": "NO ACTION",
+              "onDelete": "CASCADE"
+            }
+          },
+          "id_organizacao": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": false,
+              "references": "id_organizacao",
+              "inTable": "organizacoes",
+              "referenceType": "uuid",
+              "onUpdate": "NO ACTION",
+              "onDelete": "CASCADE"
+            }
+          },
+          "cargo": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
         },
         "parent": "usuarios"
       },
@@ -214,9 +397,6 @@
         "db": {
           "schema": "pgsodium",
           "comment": "This table holds metadata for derived keys given a key_id and key_context. The raw key is never stored."
-        },
-        "refs": {
-          "vault.secrets": "key_id"
         }
       },
       "vault.secrets": {
@@ -227,6 +407,16 @@
       }
     },
     "views": {
+      "extensions.pg_stat_statements_info": {
+        "db": {
+          "schema": "extensions"
+        }
+      },
+      "extensions.pg_stat_statements": {
+        "db": {
+          "schema": "extensions"
+        }
+      },
       "pgsodium.valid_key": {
         "db": {
           "schema": "pgsodium"
@@ -245,16 +435,6 @@
       "pgsodium.masking_rule": {
         "db": {
           "schema": "pgsodium"
-        }
-      },
-      "extensions.pg_stat_statements_info": {
-        "db": {
-          "schema": "extensions"
-        }
-      },
-      "extensions.pg_stat_statements": {
-        "db": {
-          "schema": "extensions"
         }
       },
       "vault.decrypted_secrets": {
